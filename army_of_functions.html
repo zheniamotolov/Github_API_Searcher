@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+      'use strict';
+      var funcs = [];
+         var x = function(i) {
+	 return function() {
+	 return i;
+	 };
+	 };
+	 for(var i = 0; i < 10; i++) {
+	 funcs[i] = x(i);
+	 };
+	 alert(funcs[9]())
+	   </script>
+	   </body>
+	   </html>
