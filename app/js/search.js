@@ -1,17 +1,22 @@
 'use strict';
-function select(){
- return document.getElementById("select").value;
+function select() {
+    return document.getElementById("select").value;
 }
 function handler() {
     // console.log("2)"+select_1());
-    if ( "user search by name".indexOf(select())!=(-1)) {
+    if ("user search by name".indexOf(select()) != (-1)) {
         // repository_search();
 
-        users_search()
+            users_search();
+
     }
-    else if ( "repository search by key words".indexOf(select())!=(-1)) {
+    else if ("repository search by key words".indexOf(select()) != (-1)) {
         // console.log("slepp");
-        repository_search();
+
+
+            repository_search();
+
+
     }
 }
 // function click() {

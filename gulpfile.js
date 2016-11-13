@@ -1,11 +1,3 @@
-// ////////////////////////////////////////////////
-//
-// EDIT CONFIG OBJECT BELOW !!!
-//
-// jsConcatFiles => list of javascript files (in order) to concatenate
-// buildFilesFoldersRemove => list of files to remove when running final build
-// // //////////////////////////////////////////////
-
 var config = {
 	buildFilesFoldersRemove:[
 		'build/scss/',
@@ -18,13 +10,6 @@ var config = {
 		'build/maps/'
 	]
 };
-
-
-// ////////////////////////////////////////////////
-// Required taskes
-// gulp build
-// bulp build:serve
-// // /////////////////////////////////////////////
 
 var gulp = require('gulp'),
 	sass = require('gulp-sass'),
@@ -39,19 +24,12 @@ var gulp = require('gulp'),
 	del = require('del');
 
 
-// ////////////////////////////////////////////////
-// Log Errors
-// // /////////////////////////////////////////////
-
 function errorlog(err){
 	console.error(err.message);
 	this.emit('end');
 }
 
 
-// ////////////////////////////////////////////////
-// Scripts Tasks
-// ///////////////////////////////////////////////
 
 gulp.task('scripts', function() {
   return gulp.src('./app/js/*.js')
@@ -65,11 +43,6 @@ gulp.task('scripts', function() {
 
     .pipe(reload({stream:true}));
 });
-
-
-// ////////////////////////////////////////////////
-// Styles Tasks
-// ///////////////////////////////////////////////
 
 gulp.task('styles', function() {
 	gulp.src('app/scss/style.scss')
@@ -86,9 +59,6 @@ gulp.task('styles', function() {
 });
 
 
-// ////////////////////////////////////////////////
-// HTML Tasks
-// // /////////////////////////////////////////////
 
 gulp.task('html', function(){
     gulp.src('app/**/*.html')
@@ -96,9 +66,7 @@ gulp.task('html', function(){
 });
 
 
-// ////////////////////////////////////////////////
-// Browser-Sync Tasks
-// // /////////////////////////////////////////////
+
 
 gulp.task('browser-sync', function() {
     browserSync({
@@ -108,7 +76,7 @@ gulp.task('browser-sync', function() {
     });
 });
 
-// task to run build server for testing final app
+
 gulp.task('build:serve', function() {
     browserSync({
         server: {
@@ -118,9 +86,7 @@ gulp.task('build:serve', function() {
 });
 
 
-// ////////////////////////////////////////////////
-// Build Tasks
-// // /////////////////////////////////////////////
+
 
 // clean out all files and folders from build folder
 gulp.task('build:cleanfolder', function (cb) {
@@ -129,14 +95,13 @@ gulp.task('build:cleanfolder', function (cb) {
 	], cb);
 });
 
-// task to create build directory of all files
+
 gulp.task('build:copy', ['build:cleanfolder'], function(){
     return gulp.src('app/**/*/')
     .pipe(gulp.dest('build/'));
 });
 
-// task to removed unwanted build files
-// list all files and directories here that you don't want included
+
 gulp.task('build:remove', ['build:copy'], function (cb) {
 	del(config.buildFilesFoldersRemove, cb);
 });
@@ -144,9 +109,6 @@ gulp.task('build:remove', ['build:copy'], function (cb) {
 gulp.task('build', ['build:copy', 'build:remove']);
 
 
-// ////////////////////////////////////////////////
-// Watch Tasks
-// // /////////////////////////////////////////////
 
 gulp.task ('watch', function(){
 	gulp.watch('app/scss/**/*.scss', ['styles']);
